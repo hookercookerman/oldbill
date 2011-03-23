@@ -7,7 +7,7 @@ OldBill gives you a nice ruby wrapper for the {police.uk API}[http://police.uk]
 
 == Quickstart
 
-  @session = OldBill.session.create("username", "password")
+  @session = OldBill.session.create(:username => "username", :password => "password")
   
   @session.locate(52.6397278, -1.1322921).crimes_by_month
 
@@ -22,8 +22,9 @@ OldBill gives you a nice ruby wrapper for the {police.uk API}[http://police.uk]
     
 == This is overriding the defaults
 
-    @session = Calculated::Session.create(
-      :api_key => "your_api_key", 
+    @session = OldBill::Session.create(
+      :username => "username",
+      :password => "password"
       :cache => Moneta::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'], :bucket => 'carbon')
       :expires_in => 60*60*24*14
     )
@@ -42,12 +43,12 @@ OldBill gives you a nice ruby wrapper for the {police.uk API}[http://police.uk]
   
 === Forces
 
-  @session = OldBill.session.create("username", "password")
+  @session = OldBill.session.create(:username => "username", :password => "password")
   @session.forces
   
 === Crimes
 
-  @session = OldBill.session.create("username", "password")
+  @session = OldBill.session.create(:username => "username", :password => "password")
   
   @session.crimes_by_month("leicestershire", "C01")
   
@@ -57,7 +58,7 @@ OldBill gives you a nice ruby wrapper for the {police.uk API}[http://police.uk]
 
 === Neighbourhoods
 
-  @session = OldBill.session.create("username", "password")
+  @session = OldBill.session.create(:username => "username", :password => "password")
   
   @session.neighbourhoods("leicestershire")
   
@@ -72,7 +73,7 @@ OldBill gives you a nice ruby wrapper for the {police.uk API}[http://police.uk]
   
 == Locate A Neighbourhood
 
-  @session = OldBill.session.create("username", "password")
+  @session = OldBill.session.create(:username => "username", :password => "password")
   @session.locate(52.6397278, -1.1322921)
   
   @session.locate(52.6397278, -1.1322921).events
