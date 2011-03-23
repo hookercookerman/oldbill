@@ -1,0 +1,81 @@
+= OldBill
+
+OldBill gives you a nice ruby wrapper for the {police.uk API}[http://police.uk]
+
+== Idiomatic Ruby
+== Concrete classes and methods modelling Police data
+
+== Quickstart
+
+  @session = OldBill.session.create("username", "password")
+  
+  @session.locate(52.6397278, -1.1322921).crimes_by_month
+
+=== Defaults:
+
+    caching                    # => true (boolean)
+    expires_in                 # => 60*60*24 (seconds)
+    cache                      # => Moneta::Memory.new "(Moneta Supported Cache) http://github.com/wycats/moneta
+    server                     # => "api-stage.carboncalculated.com" (string)
+    api_version                #=>  "v1" (string)
+    logging                    # => true (boolean)
+    
+== This is overriding the defaults
+
+    @session = Calculated::Session.create(
+      :api_key => "your_api_key", 
+      :cache => Moneta::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'], :bucket => 'carbon')
+      :expires_in => 60*60*24*14
+    )
+    
+    This has created a session with S3 Moneta cache that expires in 14 days
+
+== Resources
+
+<b>Police API</b> for code: http://policeapi2.rkh.co.uk/api/docs/
+
+<b>Gemcutter</b> for the gem: http://gemcutter.org/gems/oldbill
+
+== Using OldBill
+
+  The API is separated into 2 area neighbourhoods and crime
+  
+=== Forces
+
+  @session = OldBill.session.create("username", "password")
+  @session.forces
+  
+=== Crimes
+
+  @session = OldBill.session.create("username", "password")
+  
+  @session.crimes_by_month("leicestershire", "C01")
+  
+  @session.street_level_crimes(52.6397278, -1.1322921)
+  
+  @session.crime_categories
+
+=== Neighbourhoods
+
+  @session = OldBill.session.create("username", "password")
+  
+  @session.neighbourhoods("leicestershire")
+  
+  @session.neighbourhood("leicestershire", "C01")
+  
+  You can then call methods on the neighbourhood
+  
+  @session.neighbourhood("leicestershire", "C01").street_level_crimes
+  @session.neighbourhood("leicestershire", "C01").crimes_by_month
+  @session.neighbourhood("leicestershire", "C01").events
+  @session.neighbourhood("leicestershire", "C01").police_officers
+  
+== Locate A Neighbourhood
+
+  @session = OldBill.session.create("username", "password")
+  @session.locate(52.6397278, -1.1322921)
+  
+  @session.locate(52.6397278, -1.1322921).events
+  @session.locate(52.6397278, -1.1322921).crimes_by_month
+  @session.locate(52.6397278, -1.1322921).police_officers
+  @session.locate(52.6397278, -1.1322921).full_neighbourhood.street_level_crimes
