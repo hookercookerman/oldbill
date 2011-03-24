@@ -14,11 +14,9 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "oldbill"
   
-  s.add_dependency 'i18n',             '>= 0.5'
   s.add_dependency 'httparty',         '~> 0.7.4'
   s.add_dependency 'hashie',           '~> 1.0.0'
   s.add_dependency 'moneta',           '~> 0.6.0'
-  s.add_dependency 'tzinfo',           '~> 0.3.22'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
