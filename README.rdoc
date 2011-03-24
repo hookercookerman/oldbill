@@ -2,6 +2,10 @@
 
 OldBill gives you a nice ruby wrapper for the {police.uk API}[http://police.uk]
 
+It allows you to hook into the new Police API service to find out about crime in your local area.
+
+The Police API allows you to download data about crime localised to your area within a date range, and is data direct from the UK police service. Enjoy!
+
 == Idiomatic Ruby
 == Concrete classes and methods modelling Police data
 
