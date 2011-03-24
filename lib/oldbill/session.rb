@@ -1,4 +1,3 @@
-require 'active_support/core_ext/object/to_query'
 module OldBill
   class Session
             
@@ -65,7 +64,7 @@ module OldBill
     def cache_key(path, params = {})
       parts = []
       parts << path
-      parts << params.to_query
+      parts << params.to_a
       parts.join("/")
     end
     

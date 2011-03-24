@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "oldbill"
   
-  s.add_dependency 'activesupport',    '~> 3.0.5'
   s.add_dependency 'i18n',             '>= 0.5'
   s.add_dependency 'httparty',         '~> 0.7.4'
   s.add_dependency 'hashie',           '~> 1.0.0'

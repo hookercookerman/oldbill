@@ -3,7 +3,6 @@ require "httparty"
 require "hashie"
 require "moneta"
 require "moneta/memory"
-require 'active_support/ordered_hash'
 
 require "oldbill/api/crime"
 require "oldbill/api/neighbourhood"
